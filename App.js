@@ -1,45 +1,70 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, SafeAreaView, StyleSheet, Text, Alert, Image, TouchableWithoutFeedback } from 'react-native';
+import { View, SafeAreaView, StyleSheet, Text, Platform } from 'react-native';
 
 export default function App() {
-
-  const handlePress = () => {
-    console.log('press');
-  }
-
-  const handleButtonPress = () => Alert.alert('title', 'myMessage', [
-    { text: 'Ok', onPress: handlePress},
-    { text: 'Cancel' }
-  ]);
-  const handleButtonPress2 = () => Alert.prompt('title', 'myMessage', text => console.log(text));
-
   return (
+    // <SafeAreaView style={styles.container}>
+    //   <Text style={styles.textStyle}>Hello Native</Text>
+    //   <View style={styles.box}>
+    //     <Text>Hello Native 2</Text>
+    //   </View>
+    //   <View styles={styles.miniBox}></View>
+    //   <View styles={styles.miniBox}></View>
+    //   <View styles={styles.miniBox}></View>
+    //   <StatusBar style="auto" />
+    // </SafeAreaView>
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text} onPress={handlePress}>dsdsds{'\n'}sdada</Text>
-      <Button title='Нажми на меня' onPress={handleButtonPress} color='grey' />
-      <Button title='Prompt' onPress={handleButtonPress2} />
-      <TouchableWithoutFeedback onPress={handleButtonPress}>
-        <Image blurRadius={15} source={{
-          width: 200,
-          height: 150,
-          uri: 'https://img3.akspic.ru/previews/9/6/1/9/6/169169/169169-ty_zasluzhivaesh_vsyacheskogo_schastya-schaste-strah-voda-polety_na_vozdushnom_share-500x.jpg'
-        }}/>
-      </TouchableWithoutFeedback>
-      <StatusBar style="auto" />
+      <View style={[styles.miniBox, styles.firstMiniBox]}></View>
+      <View style={[styles.miniBox, styles.secondMiniBox]}></View>
+      <View style={[styles.miniBox, styles.thirdMiniBox]}></View>
     </SafeAreaView>
   );
+}
+
+const textStyle = {
+  backgroundColor: 'red',
+  color: 'white'
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
+    backgroundColor: 'yellow',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    // alignItems: 'baseline',
     alignItems: 'center'
+    // justifyContent: 'center',
   },
-  text: {
-    color: 'red',
+  box: {
+    backgroundColor: 'yellow',
+    width: '50%',
+    height: 100,
+    justifyContent: 'center',
+    alignItems: 'center',
+    left: '25%',
+    top: Platform.OS === 'ios' ? 150 : 30,
+  },
+  textStyle: {
     backgroundColor: 'black',
-    textAlign: 'center',
+    color: 'white'
+  },
+  miniBox: {
+    width: 100,
+    height: 100
+    // flex: 1,
+  },
+  firstMiniBox: {
+    backgroundColor: 'white',
+    height: 200,
+    alignSelf: 'flex-start'
+    // flex: 3,
+  },
+  secondMiniBox: {
+    backgroundColor: 'black',
+    // flex: 2,
+  },
+  thirdMiniBox: {
+    backgroundColor: 'blue'
   }
 });

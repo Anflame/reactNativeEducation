@@ -1,49 +1,35 @@
-import { StatusBar } from 'expo-status-bar';
-import { FC, useState } from 'react';
-import { View, SafeAreaView, StyleSheet, Text, Platform, Button } from 'react-native';
-import { Form } from './src/components/Form/Form';
-import Header from './src/components/Header';
-import List from './src/components/List';
+import { FC, useEffect, useState } from 'react';
+import { AbrilFatface_400Regular
+} from '@expo-google-fonts/abril-fatface';
+import * as SplashScreen from 'expo-splash-screen';
+import * as Font from 'expo-font';
+import { Main } from './pages/Main';
+
+SplashScreen.preventAutoHideAsync();
 
 const App: FC = () => {
-  const [list, setList] = useState([
-    {
-      id: '1',
-      title: 'Купить молоко',
-      done: false,
-    },
-    {
-      id: '2',
-      title: 'Приготовить суп',
-      done: false,
-    },
-    {
-      id: '3',
-      title: 'Погулять с собакой',
-      done: false,
+  const [appIsReady, setAppIsReady] = useState(false);
+
+  useEffect(() => {
+    async function prepare() {
+      try {
+        // await Font.loadAsync({ 'roboto': require('./assets/fonts/Roboto-Bold.ttf') });
+        await Font.loadAsync({ 'abrilFatFace' : AbrilFatface_400Regular });
+        await new Promise(resolve => setTimeout(resolve, 2000));
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        setAppIsReady(true);
+      }
     }
-  ]);
 
-  const handlePress = (text: string) => {
-    setList((list) => [...list, {
-      id: Math.random().toString(36).substring(7),
-      title: text,
-      done: false,
-    }]);
-  }
+    prepare();
+  }, []);
 
-  const deleteHandler = (id: string) => {
-    setList(list.filter(el => el.id !== id));
-  };
-
+  if (!appIsReady) return null;
   return (
-    <View style={{ flex: 1}}>
-      <Header />
-      <Form handlePress={handlePress} />
-      <List list={list} deleteHandler={deleteHandler} />
-      <StatusBar style='auto'/>
-    </View>
-  );
+    <Main appIsReady={appIsReady} />
+  )
 }
 
 export default App;

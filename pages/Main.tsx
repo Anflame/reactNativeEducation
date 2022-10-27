@@ -17,8 +17,8 @@ export const Main: FC<MainProps> = ({ appIsReady }) => {
 
   return (
     <SafeAreaView style={styles.main} onLayout={onLayoutRootView}>
-      <Text style={styles.text}>dsdsd</Text>
+      <Text style={styles.text}>Главная страница</Text>
       <StatusBar barStyle='default'/>
-  </SafeAreaView>
+    </SafeAreaView>
  );
 }

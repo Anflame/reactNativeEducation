@@ -1,9 +1,11 @@
 import React, { FC } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { styles } from './styles';
 
-export const Contacts: FC = () => {
+const Contacts: FC = () => {
  return (
-   <View>О Нас</View>
+   <View><Text>О Нас</Text></View>
  );
 }
+
+export default Contacts;

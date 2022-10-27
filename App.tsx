@@ -3,7 +3,7 @@ import { AbrilFatface_400Regular
 } from '@expo-google-fonts/abril-fatface';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
-import { Main } from './pages/Main';
+import Navigation from './navigation';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -28,7 +28,7 @@ const App: FC = () => {
 
   if (!appIsReady) return null;
   return (
-    <Main appIsReady={appIsReady} />
+      <Navigation appIsReady={appIsReady}/>
   )
 }
 

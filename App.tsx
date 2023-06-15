@@ -5,6 +5,8 @@ import { Form } from './src/components/Form/Form';
 import Header from './src/components/Header';
 import List from './src/components/List';
 
+
+
 const App: FC = () => {
   const [list, setList] = useState([
     {
@@ -37,11 +39,11 @@ const App: FC = () => {
   };
 
   return (
-    <View style={{ flex: 1}}>
+    <View style={{ flex: 1 }}>
       <Header />
       <Form handlePress={handlePress} />
       <List list={list} deleteHandler={deleteHandler} />
-      <StatusBar style='auto'/>
+      <StatusBar style='auto' />
     </View>
   );
 }
